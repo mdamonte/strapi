@@ -43,6 +43,8 @@ const createSingleTypeController = ({ model, service }) => {
         entity = await service.createOrUpdate(ctx.request.body);
       }
 
+      ctx.set('Content-Range', await service.count(ctx.query));
+
       return sanitizeEntity(entity, { model });
     },
 
